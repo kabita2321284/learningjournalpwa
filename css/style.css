@@ -1,0 +1,217 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.6;
+  background-color: #fafafa;
+  color: #333;
+
+  /* sticky footer layout */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding-top: 70px; /* prevent content hiding behind fixed navbar */
+  overflow-x: hidden; /* prevent horizontal scroll */
+}
+
+/* ================================
+   Navigation Bar (Fixed)
+================================ */
+.navbar {
+  background-color: #005f73;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.navbar .logo {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.2rem;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links .active {
+  text-decoration: underline;
+}
+
+main {
+  flex: 1; 
+}
+
+.content {
+  padding: 2rem 1.5rem;
+  max-width: 1000px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+.hero {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+h2 {
+  margin-bottom: 1rem;
+  color: #003844;
+}
+
+p {
+  font-size: 1rem;
+}
+
+footer {
+  text-align: center;
+  background-color: #005f73;
+  color: white;
+  padding: 1rem;
+}
+
+
+@media (min-width: 768px) {
+  .nav-links {
+    gap: 2rem;
+  }
+
+  .content {
+    padding: 3rem;
+    margin-top: 3rem; 
+    margin-bottom: 3rem;
+  }
+
+  .hero {
+    padding: 4rem 2rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .content {
+    max-width: 1100px;
+  }
+}
+
+/* ================================
+   Hamburger Menu (Visible on Mobile)
+================================ */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  z-index: 1100; /* ensure above nav-links */
+}
+
+.bar {
+  height: 3px;
+  width: 25px;
+  background-color: white;
+  margin: 4px 0;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background-color: #005f73;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    display: none;
+    z-index: 999;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-links li {
+    padding: 1rem 0;
+  }
+
+  .menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active .bar:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .menu-toggle.active .bar:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+}
+
+/* ================================
+   Weekly Highlights Slider
+================================ */
+.highlights {
+  text-align: center;
+  margin: 2rem auto;
+}
+
+.slider {
+  position: relative;
+  overflow: hidden;
+  max-width: 600px;
+  margin: 1.5rem auto;
+}
+
+.slides {
+  display: flex;
+  width: 300%;
+  animation: slideAnimation 30s infinite; /* slowed from 15s → 30s */
+}
+
+.slide {
+  flex: 1 0 100%;
+  padding: 2rem;
+  background: #e0f2f1;
+  border-radius: 10px;
+  margin: 0 0.5rem;
+}
+
+@keyframes slideAnimation {
+  0% { transform: translateX(0%); }
+  33% { transform: translateX(-100%); }
+  66% { transform: translateX(-200%); }
+  100% { transform: translateX(0%); }
+}
