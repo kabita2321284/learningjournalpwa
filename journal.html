@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learning Journal | Journal</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <!-- Navigation will be inserted here dynamically -->
+    <div id="nav-placeholder"></div>
+  </header>
+
+  <main class="content">
+    <section>
+      <h2>Add New Journal Entry</h2>
+
+      <!-- New entry form (Storage API) -->
+      <form id="journal-form">
+        <label>Title:</label>
+        <input type="text" id="entry-title" required>
+
+        <label>Entry Text:</label>
+        <textarea id="entry-text" rows="4" required></textarea>
+
+        <button type="submit">Save Entry</button>
+      </form>
+
+      <h2>Saved Entries</h2>
+      <div id="saved-entries"></div>
+    </section>
+
+    <section>
+      <h2>Weekly Journal Entries</h2>
+
+      <!-- Collapsible Journal Entries (Your original content unchanged) -->
+      <article class="collapsible">
+        <h3>Week 1: Mobile Application Development</h3>
+        <div class="content-box">
+          <p>
+            This lab introduced me to mobile and web development tools such as GitHub, VS Code, and PythonAnywhere, helping me understand how to build and deploy a simple Progressive Web App (PWA). I began by setting up a GitHub repository named TemperatureConverterPWA, cloning it in VS Code, and learning the difference between committing and pushing changes. This process taught me the basics of version control and collaboration using Git.
+          </p>
+          <p>
+            Next, I developed a temperature converter web app using HTML, CSS, and JavaScript. The app allows users to convert temperatures between Celsius, Fahrenheit, and Kelvin. I also added a manifest.json file and a service worker (sw.js) to make the app installable and available offline. This step helped me understand how PWAs combine web and mobile functionality to provide a seamless user experience.
+          </p>
+          <p>
+            Finally, I deployed my app on GitHub Pages and PythonAnywhere, gaining hands-on experience in hosting and troubleshooting static web files. I initially faced challenges with file paths and configuration settings but learned how to correct them. This lab strengthened my confidence in using cloud platforms and deepened my understanding of how web apps are built, tested, and deployed across different environments.
+          </p>
+        </div>
+      </article>
+
+      <article class="collapsible">
+        <h3>Week 2: Frontend Fundamentals</h3>
+        <div class="content-box">
+          <p>
+            This week’s lab focused on developing the structure, layout, and design of my Learning Journal Progressive Web App (PWA) using HTML and CSS. The goal was to create a responsive, mobile-first website that could adapt seamlessly to different screen sizes. I began by planning the folder structure — separating files into /css, /js, and /images — and creating four consistent pages: Home, Journal, Projects, and About. This provided a clear foundation for scalability and future JavaScript integration.
+          </p>
+          <p>
+            To achieve responsiveness, I applied the mobile-first approach using CSS Flexbox and media queries. Starting with a layout optimized for smaller screens helped ensure good usability on mobile devices before enhancing it for desktops. I used consistent color schemes, typography, and spacing to maintain visual harmony. The navigation bar was designed to remain visible across all pages, providing a unified user experience. This process strengthened my understanding of layout design principles and component reusability.
+          </p>
+          <p>
+            The most useful CSS concept I applied was Flexbox, which made aligning and spacing elements much easier compared to traditional positioning. However, the most challenging part was achieving perfect alignment between desktop and mobile views. Through trial and testing in responsive mode within VS Code and browsers, I gradually fixed spacing and scaling issues. This lab helped me build confidence in structuring web layouts and applying professional, responsive front-end design techniques that will serve as the foundation for adding interactivity in the next stage.
+          </p>
+        </div>
+      </article>
+
+      <article class="collapsible">
+        <h3>Week 3: JavaScript and DOM Manipulation</h3>
+        <div class="content-box">
+          <p>1. Which DOM selection methods did you use, and why?</p>
+          <p> </p>
+
+          <p>
+            In this week’s lab, I used several DOM selection methods including document.getElementById(), document.querySelector(), and document.querySelectorAll().
+            I used getElementById() to target unique elements such as the theme toggle button and the date/time display.
+            The querySelector() method was useful for selecting the first matching element, such as the navigation links container or a collapsible section.
+            Finally, I used querySelectorAll() to select multiple elements (like all collapsible journal entries) and loop through them to attach event listeners dynamically.
+            These methods provided flexibility and control over specific elements, making it easier to manipulate the page content and behavior.
+          </p>
+
+          <p>2. What was the most challenging part about linking JavaScript with HTML?</p>
+          <p> </p>
+
+          <p>
+            The most challenging part was ensuring that the JavaScript code interacted correctly with dynamically inserted elements — for example, the navigation bar was created entirely with JavaScript, so the event listeners for the menu toggle and theme button had to run after the DOM was ready.
+            At first, the theme toggle didn’t work because the elements weren’t available yet when the script executed.
+            Using the DOMContentLoaded event fixed this issue, ensuring that all elements were loaded before the JavaScript tried to access them.
+          </p>
+
+          <p>3. How did you test and debug your JavaScript code?</p>
+
+          <p>
+            I used the browser’s Developer Tools (Console and Elements tab) to test and debug my JavaScript.
+            Whenever something didn’t work, I checked for console errors and used console.log() statements to track variable values and confirm if event listeners were firing.
+            I also tested on both desktop and mobile browsers to ensure the hamburger menu and dark/light theme worked responsively.
+            Refreshing the pages often and clearing cache (Ctrl + F5) helped confirm that the latest script updates were being applied correctly.
+          </p>
+        </div>
+      </article>
+
+      <article class="collapsible">
+        <h3>Week 4: Introduction to API's:</h3>
+        <div class="content-box">
+          <p>
+            1. Which Storage, Browser, and Third-Party APIs did you choose, and why?
+          </p>
+          <p>
+            For this week, I integrated three different types of APIs into my Learning Journal PWA:
+
+<p>Storage API: LocalStorage</p>.
+
+I used LocalStorage to save journal entries that users create through the new form on the Journal page. I chose it because it is simple, requires no backend, and provides persistent storage even after closing the browser.
+
+<p>Browser API: Clipboard API</p>.
+I added a “Copy Text” button to each saved journal entry. When clicked, the entry is copied directly to the user’s clipboard. I chose the Clipboard API because it enhances usability and makes it easy for users to reuse or reference their notes.
+
+
+<p>Third-Party API: Google Maps Embed API</p>.
+I added an interactive Google Map to the About page to show the location of the University for the Creative Arts. This API was chosen because it is visually engaging, easy to integrate, and clearly demonstrates the use of an external service inside a PWA.
+          </p>
+          <p>
+            Finally, I deployed my app on GitHub Pages and PythonAnywhere, gaining hands-on experience in hosting and troubleshooting static web files. I initially faced challenges with file paths and configuration settings but learned how to correct them. This lab strengthened my confidence in using cloud platforms and deepened my understanding of how web apps are built, tested, and deployed across different environments.
+          </p>
+          <p>
+            2. How did you integrate each API with DOM manipulation?
+          </p>
+
+          <p> 
+For LocalStorage, I used JavaScript to capture form inputs, convert them into objects, and save them in an array stored in LocalStorage. Then I dynamically generated journal entry HTML using createElement() and inserted it into the DOM so entries reappear every time the page loads.
+
+The Clipboard API uses navigator.clipboard.writeText() when the user clicks a copy button. I used DOM event delegation to detect which entry’s text was selected and extract that content from the DOM.
+
+For the Google Maps API, I embedded the map inside a dedicated <section> element on the About page. Although the embed uses an iframe, I still manipulated the DOM to insert and style the map section consistently with the rest of the PWA.
+          </p>
+
+          <p> 
+3. What challenges did you encounter, and how did you solve them?<p/>
+
+<p>One challenge was ensuring that dynamically created journal entries worked with the collapsible sections already implemented in Week 3. When new entries were loaded from LocalStorage, they did not behave like the original collapsibles. I solved this by writing a reusable activateCollapsible() function and manually re-applying it to newly rendered entries after saving or deleting.
+
+Another issue was the Clipboard API failing when running the PWA locally without HTTPS. I learned that some browser APIs only work on secure origins. When I tested the PWA through GitHub Pages, the Clipboard API worked correctly.
+Lastly, the Google Maps iframe initially didn’t fit the layout. I fixed this by styling the map with responsive CSS and placing it inside a new .map-section container.
+          </p>
+          <p> 
+4. In what ways do these APIs improve your Learning Journal PWA?</p>
+
+<p></p>Adding these APIs made my PWA significantly more interactive and user-friendly:
+
+LocalStorage gives the journal real functionality by allowing users to create, save, delete, and reload their entries.
+
+Clipboard API improves convenience, letting users quickly copy notes into other applications or assignments.
+
+Google Maps API adds a visual and engaging element that connects the journal to the real world by showing my university’s location.
+
+Overall, these APIs make the PWA feel more complete, professional, and closer to a real mobile application experience.
+          </p>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Kabita Bindukar | <span id="date-time"></span></p>
+  </footer>
+
+  <!-- Load reusable navigation and scripts -->
+  <script src="js/script.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/browser.js"></script>
+
+</body>
+</html>
