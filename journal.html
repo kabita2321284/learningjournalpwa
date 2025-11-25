@@ -13,6 +13,10 @@
   </header>
 
   <main class="content">
+
+    <!-- ===================== -->
+    <!-- ADD NEW ENTRY SECTION -->
+    <!-- ===================== -->
     <section>
       <h2>Add New Journal Entry</h2>
 
@@ -31,6 +35,23 @@
       <div id="saved-entries"></div>
     </section>
 
+    <!-- ===================== -->
+    <!-- WEEK 5: PYTHON + JSON -->
+    <!-- ===================== -->
+    <section id="python-reflections-section">
+      <h2>Reflections from Python & JSON (Week 5)</h2>
+
+      <p>Total reflections: <span id="reflection-count">0</span></p>
+
+      <label for="reflection-filter">Filter reflections:</label>
+      <input type="text" id="reflection-filter" placeholder="Type a keyword...">
+
+      <div id="python-reflections"></div>
+    </section>
+
+    <!-- ===================== -->
+    <!-- WEEKLY JOURNAL ENTRIES -->
+    <!-- ===================== -->
     <section>
       <h2>Weekly Journal Entries</h2>
 
@@ -69,23 +90,20 @@
         <h3>Week 3: JavaScript and DOM Manipulation</h3>
         <div class="content-box">
           <p>1. Which DOM selection methods did you use, and why?</p>
-          <p> </p>
+          <p></p>
 
           <p>
             In this week’s lab, I used several DOM selection methods including document.getElementById(), document.querySelector(), and document.querySelectorAll().
             I used getElementById() to target unique elements such as the theme toggle button and the date/time display.
             The querySelector() method was useful for selecting the first matching element, such as the navigation links container or a collapsible section.
             Finally, I used querySelectorAll() to select multiple elements (like all collapsible journal entries) and loop through them to attach event listeners dynamically.
-            These methods provided flexibility and control over specific elements, making it easier to manipulate the page content and behavior.
           </p>
 
           <p>2. What was the most challenging part about linking JavaScript with HTML?</p>
-          <p> </p>
+          <p></p>
 
           <p>
             The most challenging part was ensuring that the JavaScript code interacted correctly with dynamically inserted elements — for example, the navigation bar was created entirely with JavaScript, so the event listeners for the menu toggle and theme button had to run after the DOM was ready.
-            At first, the theme toggle didn’t work because the elements weren’t available yet when the script executed.
-            Using the DOMContentLoaded event fixed this issue, ensuring that all elements were loaded before the JavaScript tried to access them.
           </p>
 
           <p>3. How did you test and debug your JavaScript code?</p>
@@ -93,8 +111,6 @@
           <p>
             I used the browser’s Developer Tools (Console and Elements tab) to test and debug my JavaScript.
             Whenever something didn’t work, I checked for console errors and used console.log() statements to track variable values and confirm if event listeners were firing.
-            I also tested on both desktop and mobile browsers to ensure the hamburger menu and dark/light theme worked responsively.
-            Refreshing the pages often and clearing cache (Ctrl + F5) helped confirm that the latest script updates were being applied correctly.
           </p>
         </div>
       </article>
@@ -102,61 +118,63 @@
       <article class="collapsible">
         <h3>Week 4: Introduction to API's:</h3>
         <div class="content-box">
-          <p>
-            1. Which Storage, Browser, and Third-Party APIs did you choose, and why?
-          </p>
-          <p>
-            For this week, I integrated three different types of APIs into my Learning Journal PWA:
-
-<p>Storage API: LocalStorage</p>.
-
+         <p><strong> 
+1. Which Storage, Browser, and Third-Party APIs did you choose, and why?
+</strong></p>
+<p> For this week, I integrated three different types of APIs into my Learning Journal PWA:
+Storage API: Local Storage
 I used LocalStorage to save journal entries that users create through the new form on the Journal page. I chose it because it is simple, requires no backend, and provides persistent storage even after closing the browser.
-
-<p>Browser API: Clipboard API</p>.
+Browser API: Clipboard API
 I added a “Copy Text” button to each saved journal entry. When clicked, the entry is copied directly to the user’s clipboard. I chose the Clipboard API because it enhances usability and makes it easy for users to reuse or reference their notes.
-
-
-<p>Third-Party API: Google Maps Embed API</p>.
+Third-Party API: Google Maps Embed API
 I added an interactive Google Map to the About page to show the location of the University for the Creative Arts. This API was chosen because it is visually engaging, easy to integrate, and clearly demonstrates the use of an external service inside a PWA.
-          </p>
-          <p>
-            Finally, I deployed my app on GitHub Pages and PythonAnywhere, gaining hands-on experience in hosting and troubleshooting static web files. I initially faced challenges with file paths and configuration settings but learned how to correct them. This lab strengthened my confidence in using cloud platforms and deepened my understanding of how web apps are built, tested, and deployed across different environments.
-          </p>
-          <p>
-            2. How did you integrate each API with DOM manipulation?
-          </p>
-
-          <p> 
-For LocalStorage, I used JavaScript to capture form inputs, convert them into objects, and save them in an array stored in LocalStorage. Then I dynamically generated journal entry HTML using createElement() and inserted it into the DOM so entries reappear every time the page loads.
-
+</p>
+ <p><strong> 2. How did you integrate each API with DOM manipulation?</strong></p>
+ <p> For LocalStorage, I used JavaScript to capture form inputs, convert them into objects, and save them in an array stored in LocalStorage. Then I dynamically generated journal entry HTML using createElement() and inserted it into the DOM so entries reappear every time the page loads.
 The Clipboard API uses navigator.clipboard.writeText() when the user clicks a copy button. I used DOM event delegation to detect which entry’s text was selected and extract that content from the DOM.
-
 For the Google Maps API, I embedded the map inside a dedicated <section> element on the About page. Although the embed uses an iframe, I still manipulated the DOM to insert and style the map section consistently with the rest of the PWA.
-          </p>
-
-          <p> 
-3. What challenges did you encounter, and how did you solve them?<p/>
-
-<p>One challenge was ensuring that dynamically created journal entries worked with the collapsible sections already implemented in Week 3. When new entries were loaded from LocalStorage, they did not behave like the original collapsibles. I solved this by writing a reusable activateCollapsible() function and manually re-applying it to newly rendered entries after saving or deleting.
-
+</p>
+<p><strong> 3. What challenges did you encounter, and how did you solve them?</strong></p>
+<p> One challenge was ensuring that dynamically created journal entries worked with the collapsible sections already implemented in Week 3. When new entries were loaded from LocalStorage, they did not behave like the original collapsibles. I solved this by writing a reusable activateCollapsible() function and manually re-applying it to newly rendered entries after saving or deleting.
 Another issue was the Clipboard API failing when running the PWA locally without HTTPS. I learned that some browser APIs only work on secure origins. When I tested the PWA through GitHub Pages, the Clipboard API worked correctly.
 Lastly, the Google Maps iframe initially didn’t fit the layout. I fixed this by styling the map with responsive CSS and placing it inside a new .map-section container.
-          </p>
-          <p> 
-4. In what ways do these APIs improve your Learning Journal PWA?</p>
-
-<p></p>Adding these APIs made my PWA significantly more interactive and user-friendly:
-
+</p>
+<p><strong> 4. In what ways do these APIs improve your Learning Journal PWA?</strong></p>
+<p> Adding these APIs made my PWA significantly more interactive and user-friendly:
 LocalStorage gives the journal real functionality by allowing users to create, save, delete, and reload their entries.
-
 Clipboard API improves convenience, letting users quickly copy notes into other applications or assignments.
-
 Google Maps API adds a visual and engaging element that connects the journal to the real world by showing my university’s location.
 
 Overall, these APIs make the PWA feel more complete, professional, and closer to a real mobile application experience.
+</p>
+        </div>
+      </article>
+       <article class="collapsible">
+        <h3>Week 5: Python & JSON Backend Data</h3>
+        <div class="content-box">
+          <p><strong>1. How is storing data in a JSON file different from using browser storage?</strong></p>
+          <p>
+            Storing data in a JSON file is different because JSON exists on the computer’s file system, while browser storage only exists inside the browser. LocalStorage is tied to one device and one browser, but JSON files can be read, edited, and shared across applications. JSON storage is more flexible and can be processed by multiple tools like Python.
+          </p>
+
+          <p><strong>2. How did you use Python to create or update your JSON file?</strong></p>
+          <p>
+            I created a Python script called save_entry.py. It asks the user to type a reflection, adds the current date and time, loads the existing reflections from reflections.json, appends the new entry, and writes everything back to the file. This showed me how Python can easily interact with JSON using the json module.
+          </p>
+
+          <p><strong>3. What does your PWA show locally, and what will users see on GitHub?</strong></p>
+          <p>
+            Locally, my PWA can load reflections from the backend folder because the JSON file exists on my machine. GitHub Pages, however, is static hosting and cannot run Python, so it cannot generate new reflections. This means my local version can update dynamically, while the GitHub version will only show reflections included in the uploaded JSON file.
+          </p>
+
+          <p><strong>4. What extra feature did you add to your PWA using the JSON file?</strong></p>
+          <p>
+            I added a reflection counter and a keyword filter. The counter shows how many reflections exist inside the JSON file, and the filter allows the user to search by typing any word. These features make the reflections easier to navigate and satisfy the requirement to extend the JSON integration with an additional feature.
           </p>
         </div>
       </article>
+      
+
     </section>
   </main>
 
@@ -168,6 +186,6 @@ Overall, these APIs make the PWA feel more complete, professional, and closer to
   <script src="js/script.js"></script>
   <script src="js/storage.js"></script>
   <script src="js/browser.js"></script>
-
+  <script src="js/json.js"></script>
 </body>
 </html>
