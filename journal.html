@@ -118,10 +118,10 @@
       <article class="collapsible">
         <h3>Week 4: Introduction to API's:</h3>
         <div class="content-box">
-         <p><strong> 
+          <p><strong> 
 1. Which Storage, Browser, and Third-Party APIs did you choose, and why?
 </strong></p>
-<p> For this week, I integrated three different types of APIs into my Learning Journal PWA:
+          <p> For this week, I integrated three different types of APIs into my Learning Journal PWA:
 Storage API: Local Storage
 I used LocalStorage to save journal entries that users create through the new form on the Journal page. I chose it because it is simple, requires no backend, and provides persistent storage even after closing the browser.
 Browser API: Clipboard API
@@ -129,18 +129,18 @@ I added a “Copy Text” button to each saved journal entry. When clicked, the 
 Third-Party API: Google Maps Embed API
 I added an interactive Google Map to the About page to show the location of the University for the Creative Arts. This API was chosen because it is visually engaging, easy to integrate, and clearly demonstrates the use of an external service inside a PWA.
 </p>
- <p><strong> 2. How did you integrate each API with DOM manipulation?</strong></p>
- <p> For LocalStorage, I used JavaScript to capture form inputs, convert them into objects, and save them in an array stored in LocalStorage. Then I dynamically generated journal entry HTML using createElement() and inserted it into the DOM so entries reappear every time the page loads.
+          <p><strong> 2. How did you integrate each API with DOM manipulation?</strong></p>
+          <p> For LocalStorage, I used JavaScript to capture form inputs, convert them into objects, and save them in an array stored in LocalStorage. Then I dynamically generated journal entry HTML using createElement() and inserted it into the DOM so entries reappear every time the page loads.
 The Clipboard API uses navigator.clipboard.writeText() when the user clicks a copy button. I used DOM event delegation to detect which entry’s text was selected and extract that content from the DOM.
-For the Google Maps API, I embedded the map inside a dedicated <section> element on the About page. Although the embed uses an iframe, I still manipulated the DOM to insert and style the map section consistently with the rest of the PWA.
+For the Google Maps API, I embedded the map inside a dedicated &lt;section&gt; element on the About page. Although the embed uses an iframe, I still manipulated the DOM to insert and style the map section consistently with the rest of the PWA.
 </p>
-<p><strong> 3. What challenges did you encounter, and how did you solve them?</strong></p>
-<p> One challenge was ensuring that dynamically created journal entries worked with the collapsible sections already implemented in Week 3. When new entries were loaded from LocalStorage, they did not behave like the original collapsibles. I solved this by writing a reusable activateCollapsible() function and manually re-applying it to newly rendered entries after saving or deleting.
+          <p><strong> 3. What challenges did you encounter, and how did you solve them?</strong></p>
+          <p> One challenge was ensuring that dynamically created journal entries worked with the collapsible sections already implemented in Week 3. When new entries were loaded from LocalStorage, they did not behave like the original collapsibles. I solved this by writing a reusable activateCollapsible() function and manually re-applying it to newly rendered entries after saving or deleting.
 Another issue was the Clipboard API failing when running the PWA locally without HTTPS. I learned that some browser APIs only work on secure origins. When I tested the PWA through GitHub Pages, the Clipboard API worked correctly.
 Lastly, the Google Maps iframe initially didn’t fit the layout. I fixed this by styling the map with responsive CSS and placing it inside a new .map-section container.
 </p>
-<p><strong> 4. In what ways do these APIs improve your Learning Journal PWA?</strong></p>
-<p> Adding these APIs made my PWA significantly more interactive and user-friendly:
+          <p><strong> 4. In what ways do these APIs improve your Learning Journal PWA?</strong></p>
+          <p> Adding these APIs made my PWA significantly more interactive and user-friendly:
 LocalStorage gives the journal real functionality by allowing users to create, save, delete, and reload their entries.
 Clipboard API improves convenience, letting users quickly copy notes into other applications or assignments.
 Google Maps API adds a visual and engaging element that connects the journal to the real world by showing my university’s location.
@@ -149,7 +149,8 @@ Overall, these APIs make the PWA feel more complete, professional, and closer to
 </p>
         </div>
       </article>
-       <article class="collapsible">
+
+      <article class="collapsible">
         <h3>Week 5: Python & JSON Backend Data</h3>
         <div class="content-box">
           <p><strong>1. How is storing data in a JSON file different from using browser storage?</strong></p>
@@ -173,7 +174,121 @@ Overall, these APIs make the PWA feel more complete, professional, and closer to
           </p>
         </div>
       </article>
-      
+
+      <!-- ===================== -->
+      <!-- WEEK 6: FLASK INTEGRATION -->
+      <!-- ===================== -->
+      <article class="collapsible">
+        <h3>Week 6: Frontend–Backend Integration with Flask</h3>
+        <div class="content-box">
+          <p><strong>1. Why is the frontend–backend connection important?</strong></p>
+          <p>
+            The frontend–backend connection is important because it allows a web application to
+            store, load, and manage data in a central place instead of relying only on the user's
+            browser. The frontend handles the user interface, while the backend processes data, saves
+            it, and makes it available for all devices and sessions. Without a backend, data would exist
+            only on one browser and would not be sharable or persistent across different users.
+            Connecting my PWA to Flask made it work more like a real application, where reflections
+            are saved securely on the server and retrieved whenever the user visits the site.
+          </p>
+
+          <p><strong>2. Which HTTP methods did you use in Flask, and why?</strong></p>
+          <p>I used three HTTP methods in Flask:</p>
+          <ul>
+            <li><strong>GET:</strong> To load all reflections from the server. This method lets the frontend request and display the current list of reflections stored in the JSON file.</li>
+            <li><strong>POST:</strong> To submit new reflections to the server. This method allowed my frontend to send data (name + reflection) to the backend, where the server then saved it into the JSON file.</li>
+            <li><strong>DELETE:</strong> I also implemented DELETE as an extra feature to remove reflections from the backend.</li>
+          </ul>
+          <p>
+            Each method served a specific purpose in building a full CRUD-style interaction between
+            my PWA and the backend.
+          </p>
+
+          <p><strong>3. What is the difference between using Flask to store and load JSON data and reading JSON directly in the browser?</strong></p>
+          <p>
+            Reading JSON directly in the browser only works for static files. The user cannot edit or
+            update the JSON file from the frontend. It’s read-only and only works locally or on GitHub
+            Pages.
+          </p>
+          <p>
+            Using Flask, however, allows the JSON file to be edited, appended, saved, and removed.
+            Flask acts like a small database layer, letting the frontend send changes that are stored on
+            the server. This means the JSON file behaves like a real data source that updates over time
+            and can be shared by all users, not just the browser it was opened in.
+          </p>
+
+          <p><strong>4. Did you face any difficulties when running your project on PythonAnywhere? How did you handle them?</strong></p>
+          <p>Yes, I faced several difficulties:</p>
+          <ul>
+            <li><strong>Incorrect file paths:</strong> PythonAnywhere runs Flask from a different working directory, so my relative path to <code>reflections.json</code> failed. I fixed it by using an absolute path to the backend folder.</li>
+            <li><strong>KeyError: 'name':</strong> This happened when my frontend didn’t send the correct JSON fields. I solved it by matching the POST request data fields with the ones expected in Flask.</li>
+            <li><strong>Week 6 reflections not appearing:</strong> The issue was caused by <code>loadServerReflections()</code> not being called. I fixed it by adding the function inside <code>DOMContentLoaded</code> in <code>browser.js</code>.</li>
+            <li><strong>Broken DELETE request URL:</strong> I corrected the JavaScript template string and rebuilt the function properly.</li>
+          </ul>
+          <p>
+            By debugging step-by-step and checking logs on PythonAnywhere, I was able to get
+            everything working.
+          </p>
+
+          <p><strong>5. What extra feature did you build into your PWA with Flask, and why did you add it?</strong></p>
+          <p>
+            I added a Delete Reflection feature using a DELETE HTTP method. Each server reflection
+            now includes a delete button that removes the entry from the JSON file on PythonAnywhere.
+            I added this extra feature because it demonstrates a more complete backend CRUD system,
+            shows I can send different types of requests (GET, POST, DELETE), provides better control for
+            the user, and improves the functionality of my Learning Journal PWA beyond the minimum
+            assignment requirements. This extra feature made the project feel more professional and helped
+            me understand how to build interactive, server-powered applications.
+          </p>
+        </div>
+      </article>
+
+      <!-- ===================== -->
+      <!-- WEEK 7: PWA ENHANCEMENTS -->
+      <!-- ===================== -->
+      <article class="collapsible">
+        <h3>Week 7: Progressive Web App</h3>
+        <div class="content-box">
+          <p><strong>1. Why is it useful to enhance your Flask app with PWA features?</strong></p>
+          <p>
+            Adding Progressive Web App features to my Flask application significantly improves how
+            users interact with the site. Instead of functioning only as a traditional web page, the app
+            can be installed and launched like a native application. This provides a cleaner interface
+            without browser controls and improves accessibility on both desktop and mobile devices.
+            PWA features also make the application more resilient by allowing users to continue
+            accessing content even when internet connectivity is limited or unavailable.
+          </p>
+
+          <p><strong>2. What did you use to support offline access and dynamic data?</strong></p>
+          <p>
+            Offline access was implemented using a service worker combined with the Cache Storage
+            API, which stores essential files such as HTML pages, CSS, and JavaScript. This allows the
+            app to load successfully when the network is unavailable. For dynamic data, I used the
+            Fetch API to communicate with the Flask backend and retrieve journal reflections stored in
+            a JSON file. Previously loaded data is cached so that users can still view existing reflections
+            when offline.
+          </p>
+
+          <p><strong>3. What extra feature did you add, and why?</strong></p>
+          <p>
+            An additional feature I implemented was a visual notification when the user is offline. This
+            feature informs users that they are viewing cached content rather than live data, helping to
+            avoid confusion when updates cannot be fetched. I added this feature to improve
+            transparency and usability, ensuring users clearly understand the app’s current network
+            state.
+          </p>
+
+          <p><strong>4. Did you face any challenges deploying your PWA, and how did you solve them?</strong></p>
+          <p>
+            During deployment, one challenge was ensuring that the service worker updated correctly
+            after making changes to cached files. In some cases, outdated files were still being served.
+            This was resolved by unregistering the service worker and clearing the site’s cache through
+            browser developer tools. Another challenge involved correctly placing static assets such as
+            icons for the PWA manifest on PythonAnywhere. Uploading the files to the correct static
+            directories and performing a hard refresh resolved these issues.
+          </p>
+        </div>
+      </article>
 
     </section>
   </main>
